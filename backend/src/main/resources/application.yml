@@ -6,22 +6,21 @@ spring:
     name: paimana-insight
 
   datasource:
-    url: jdbc:dpg-darcpf3tqb8s73f03s9g-a://localhost:5432/ppaimana_insight
-    username:paimana_insight_user
-    password:GxMFr4EjD83ewBVIvvHLoYg86wI2HnkQ
-
+    url: jdbc:postgresql://dpg-darcpf3tqb8s73f03s9g-a:5432/paimana_insight
+    username: paimana_insight_user
+    password: GxMFr4EjD83ewBVIvvHLoYg86wI2HnkQ
   jpa:
     hibernate:
       ddl-auto: update
     open-in-view: false
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
 
 app:
   jwt:
-    secret:A new random secret of 32+ characters
+    secret: PaimanaInsight-JWT-2026-X7k9Q2mR8vL4pN6sT5z
     expiration-ms: 86400000
 
   ml:
