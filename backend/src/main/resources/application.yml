@@ -6,9 +6,9 @@ spring:
     name: paimana-insight
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/paimana
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD}
+    url: jdbc:dpg-darcpf3tqb8s73f03s9g-a://localhost:5432/ppaimana_insight
+    username:paimana_insight_user
+    password:GxMFr4EjD83ewBVIvvHLoYg86wI2HnkQ
 
   jpa:
     hibernate:
@@ -21,7 +21,7 @@ spring:
 
 app:
   jwt:
-    secret: change-this-development-secret-key-to-at-least-32-bytes
+    secret:A new random secret of 32+ characters
     expiration-ms: 86400000
 
   ml:
