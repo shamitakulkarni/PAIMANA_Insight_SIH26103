@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>PAIMANA Insight</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<div id="login" class="center">
+
+    <div class="card login">
+
+        <h1>PAIMANA Insight</h1>
+
+        <p class="subtitle">
+            SIH 26103 · Project Risk Investigation
+        </p>
+
+        <h3>Sign In</h3>
+
+
+        <input
+            id="email"
+            type="email"
+            value="admin@example.com"
+            placeholder="Email"
+        >
+
+
+        <input
+            id="password"
+            type="password"
+            value="admin123"
+            placeholder="Password"
+        >
+
+
+        <button
+            class="login-button"
+            onclick="loginUser()"
+        >
+            Sign In
+        </button>
+
+
+        <p id="msg"></p>
+
+
+        <small>
+            Demo Login:
+            admin@example.com / admin123
+        </small>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<div id="app" class="hide">
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            PAIMANA Insight
+        </div>
+
+
+        <span id="who"></span>
+
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+
+    <main>
+
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <div>
+
+                <h2>
+                    Project Risk Dashboard
+                </h2>
+
+                <p>
+                    Predict · Investigate · Compare · Explain
+                </p>
+
+            </div>
+
+
+            <button
+                onclick="load()"
+            >
+                Refresh
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <div class="stats">
+
+
+            <div class="card stat-card">
+
+                <small>
+                    Total Projects
+                </small>
+
+                <h2 id="count">
+                    0
+                </h2>
+
+            </div>
+
+
+
+            <div class="card stat-card">
+
+                <small>
+                    High Risk
+                </small>
+
+                <h2 id="high">
+                    0
+                </h2>
+
+            </div>
+
+
+
+            <div class="card stat-card">
+
+                <small>
+                    Medium Risk
+                </small>
+
+                <h2 id="med">
+                    0
+                </h2>
+
+            </div>
+
+
+
+            <div class="card stat-card">
+
+                <small>
+                    Low Risk
+                </small>
+
+                <h2 id="low">
+                    0
+                </h2>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             PROJECT TABLE
+        ================================================== -->
+
+        <div class="card project-card">
+
+            <h3>
+                Projects
+            </h3>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Code</th>
+
+                            <th>Project Name</th>
+
+                            <th>Ministry</th>
+
+                            <th>State</th>
+
+                            <th>Progress</th>
+
+                            <th>Risk</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="rows">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LOWER SECTION
+        ================================================== -->
+
+        <div class="cols">
+
+
+            <!-- RISK INVESTIGATION -->
+
+            <div class="card">
+
+                <h3>
+                    Risk Investigation
+                </h3>
+
+
+                <div id="risk">
+
+                    <p>
+                        Choose a project and click
+                        <b>Analyze</b>.
+                    </p>
+
+                </div>
+
+
+                <canvas id="chart"></canvas>
+
+            </div>
+
+
+
+            <!-- AI ASSISTANT -->
+
+            <div class="card">
+
+                <h3>
+                    Spring AI Assistant
+                </h3>
+
+
+                <textarea
+                    id="q"
+                    placeholder="Example: Explain PAI-001"
+                ></textarea>
+
+
+                <button
+                    onclick="ask()"
+                >
+                    Ask AI
+                </button>
+
+
+                <pre id="answer"></pre>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>

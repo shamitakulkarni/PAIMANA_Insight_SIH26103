@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: paimana-insight
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/paimana
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  jwt:
+    secret: change-this-development-secret-key-to-at-least-32-bytes
+    expiration-ms: 86400000
+
+  ml:
+    base-url: http://localhost:8001

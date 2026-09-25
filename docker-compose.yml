@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: paimana
+      POSTGRES_USER: paimana
+      POSTGRES_PASSWORD: paimana
+    ports:
+      - "5432:5432"
+    volumes:
+      - paimana_pgdata:/var/lib/postgresql/data
+
+  ml:
+    build: ./ml-service
+    ports:
+      - "8001:8001"
+
+volumes:
+  paimana_pgdata:
