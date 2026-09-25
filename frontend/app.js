@@ -1,4 +1,4 @@
-const API = "http://localhost:8080/api";
+const API = "const API = "https://paimana-backend-cfv0.onrender.com/api";
 
 
 // =====================================================
