@@ -27,25 +27,21 @@ public class SecurityConfig {
     ) throws Exception {
 
         http
-                // Enable CORS
                 .cors(cors ->
                         cors.configurationSource(corsConfigurationSource())
                 )
 
-                // Disable CSRF because this is a REST API
                 .csrf(csrf -> csrf.disable())
 
-                // Use stateless authentication
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(
                                 SessionCreationPolicy.STATELESS
                         )
                 )
 
-                // URL permissions
                 .authorizeHttpRequests(auth -> auth
 
-                        // Allow browser pre-flight requests
+                        // Allow CORS preflight requests
                         .requestMatchers(
                                 HttpMethod.OPTIONS,
                                 "/**"
@@ -56,7 +52,7 @@ public class SecurityConfig {
                                 "/actuator/health"
                         ).permitAll()
 
-                        // Login
+                        // Login / authentication
                         .requestMatchers(
                                 "/api/auth/**"
                         ).permitAll()
@@ -71,7 +67,6 @@ public class SecurityConfig {
                                 "/api/ai/**"
                         ).permitAll()
 
-                        // Everything else requires authentication
                         .anyRequest().authenticated()
                 );
 
@@ -87,7 +82,10 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(
                 List.of(
                         "http://localhost:5500",
-                        "http://127.0.0.1:5500"
+                        "http://127.0.0.1:5500",
+
+                        // Render frontend
+                        "https://YOUR-FRONTEND-NAME.onrender.com"
                 )
         );
 
@@ -120,7 +118,6 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 }
