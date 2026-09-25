@@ -85,7 +85,7 @@ public class SecurityConfig {
                         "http://127.0.0.1:5500",
 
                         // Render frontend
-                        "https://YOUR-FRONTEND-NAME.onrender.com"
+                        "https://paimana-frontend-9c9r.onrender.com"
                 )
         );
 
