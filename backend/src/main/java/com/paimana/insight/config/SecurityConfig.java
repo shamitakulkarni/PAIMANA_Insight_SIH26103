@@ -27,21 +27,35 @@ public class SecurityConfig {
     ) throws Exception {
 
         http
+                // ==============================
+                // CORS
+                // ==============================
                 .cors(cors ->
-                        cors.configurationSource(corsConfigurationSource())
+                        cors.configurationSource(
+                                corsConfigurationSource()
+                        )
                 )
 
+                // ==============================
+                // CSRF
+                // ==============================
                 .csrf(csrf -> csrf.disable())
 
+                // ==============================
+                // SESSION
+                // ==============================
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(
                                 SessionCreationPolicy.STATELESS
                         )
                 )
 
+                // ==============================
+                // AUTHORIZATION
+                // ==============================
                 .authorizeHttpRequests(auth -> auth
 
-                        // Allow CORS preflight requests
+                        // Browser CORS preflight
                         .requestMatchers(
                                 HttpMethod.OPTIONS,
                                 "/**"
@@ -52,7 +66,7 @@ public class SecurityConfig {
                                 "/actuator/health"
                         ).permitAll()
 
-                        // Login / authentication
+                        // Login / Signup
                         .requestMatchers(
                                 "/api/auth/**"
                         ).permitAll()
@@ -67,11 +81,17 @@ public class SecurityConfig {
                                 "/api/ai/**"
                         ).permitAll()
 
+                        // Everything else
                         .anyRequest().authenticated()
                 );
 
         return http.build();
     }
+
+
+    // =====================================================
+    // CORS CONFIGURATION
+    // =====================================================
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -79,16 +99,16 @@ public class SecurityConfig {
         CorsConfiguration configuration =
                 new CorsConfiguration();
 
-        configuration.setAllowedOrigins(
+        // Allowed frontend origins
+        configuration.setAllowedOriginPatterns(
                 List.of(
+                        "https://paimana-frontend-9c9r.onrender.com",
                         "http://localhost:5500",
-                        "http://127.0.0.1:5500",
-
-                        // Render frontend
-                        "https://paimana-frontend-9c9r.onrender.com"
+                        "http://127.0.0.1:5500"
                 )
         );
 
+        // Allowed HTTP methods
         configuration.setAllowedMethods(
                 List.of(
                         "GET",
@@ -99,12 +119,15 @@ public class SecurityConfig {
                 )
         );
 
+        // Allow all request headers
         configuration.setAllowedHeaders(
                 List.of("*")
         );
 
+        // Allow cookies / authorization credentials
         configuration.setAllowCredentials(true);
 
+        // Apply CORS to every endpoint
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
 
@@ -116,8 +139,14 @@ public class SecurityConfig {
         return source;
     }
 
+
+    // =====================================================
+    // PASSWORD ENCODER
+    // =====================================================
+
     @Bean
     public PasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder();
     }
 }
