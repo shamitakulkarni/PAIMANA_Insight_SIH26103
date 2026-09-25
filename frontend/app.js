@@ -1,4 +1,4 @@
-const API ="https://paimana-backend-8o7u.onrender.com";
+const API ="https://paimana-backend-8o7u.onrender.com/api";
 
 
 // =====================================================
