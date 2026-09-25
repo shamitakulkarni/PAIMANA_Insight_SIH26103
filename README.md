@@ -2,7 +2,12 @@
 
 Complete prototype based on the uploaded SIH 26103 PAIMANA Insight specification.
 
-Stack:
+## Live Demo
+
+Frontend: https://paimana-frontend-9c9r.onrender.com
+
+## Stack
+
 - Frontend: HTML5/CSS3/JavaScript + Chart.js
 - Backend: Java 21 + Spring Boot 3.5.16 + Spring Data JPA/Hibernate + Spring Security/JWT
 - Database: PostgreSQL
@@ -16,43 +21,85 @@ The specification calls for project data ingestion, predictive ML, evidence, his
 ## Run
 
 1. Start PostgreSQL and ML:
+
    `docker compose up -d postgres ml`
 
 2. Or run the ML service manually:
+
    `cd ml-service`
+
    `python -m venv .venv`
-   Windows: `.venv\Scripts\activate`
+
+   Windows:
+
+   `.venv\Scripts\activate`
+
    `pip install -r requirements.txt`
+
    `uvicorn app:app --reload --port 8001`
 
 3. Start backend:
+
    `cd backend`
+
    `mvn spring-boot:run`
 
 4. Start frontend:
+
    `cd frontend`
+
    `python -m http.server 5500`
-   Open http://localhost:5500
 
-Backend: http://localhost:8080
-ML: http://localhost:8001
+   Open:
 
-Demo users:
+   http://localhost:5500
+
+## Services
+
+Backend:
+
+http://localhost:8080
+
+ML:
+
+http://localhost:8001
+
+Frontend:
+
+https://paimana-frontend-9c9r.onrender.com
+
+## Demo Users
+
 - admin@example.com / admin123
 - officer@example.com / officer123
 - monitor@example.com / monitor123
 
-Set `OPENAI_API_KEY` to enable the Spring AI assistant. The backend can still start without it; the AI endpoint reports that configuration is missing.
+## AI Configuration
 
-Main endpoints:
-POST /api/auth/login
-GET /api/projects
-GET /api/projects/{code}
-POST /api/projects
-PUT /api/projects/{id}
-DELETE /api/projects/{id}
-POST /api/projects/{code}/risk
-GET /api/projects/{code}/comparisons
-POST /api/projects/{code}/what-if
-POST /api/ai/chat
-GET /api/reports/projects/{code}
+Set `OPENAI_API_KEY` to enable the Spring AI assistant.
+
+The backend can still start without it; the AI endpoint reports that configuration is missing.
+
+## Main Endpoints
+
+POST `/api/auth/login`
+
+GET `/api/projects`
+
+GET `/api/projects/{code}`
+
+POST `/api/projects`
+
+PUT `/api/projects/{id}`
+
+DELETE `/api/projects/{id}`
+
+POST `/api/projects/{code}/risk`
+
+GET `/api/projects/{code}/comparisons`
+
+POST `/api/projects/{code}/what-if`
+
+POST `/api/ai/chat`
+
+GET `/api/reports/projects/{code}`
