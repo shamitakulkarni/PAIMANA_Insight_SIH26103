@@ -1,6 +1,6 @@
 # PAIMANA Insight — SIH 26103
 
-## ML-Powered Infrastructure Project Risk Analysis & Decision Support
+## AI-Powered Infrastructure Project Risk Analysis & Decision Support
 
 PAIMANA Insight is a web-based project monitoring and decision-support prototype designed for infrastructure projects.
 
