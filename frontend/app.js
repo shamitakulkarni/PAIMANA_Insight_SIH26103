@@ -4,6 +4,7 @@ const API = (window.location.hostname === "localhost" || window.location.hostnam
 
 let projectsData = [];
 let riskChart = null;
+let currentProjectCode = null;
 
 // =====================================================
 // AUTO RESTORE SESSION ON PAGE LOAD
@@ -192,6 +193,15 @@ async function load() {
             rows.appendChild(row);
         });
 
+        // Refresh the selected project investigation & chart (or first project)
+        const targetCode = currentProjectCode && projects.some(p => p.projectCode === currentProjectCode)
+            ? currentProjectCode
+            : (projects.length > 0 ? projects[0].projectCode : null);
+
+        if (targetCode) {
+            await investigate(targetCode);
+        }
+
         console.log("===== PROJECTS & RISKS LOADED SUCCESSFULLY =====");
 
     } catch (error) {
@@ -216,6 +226,7 @@ async function load() {
 // RISK INVESTIGATION
 // =====================================================
 async function investigate(code) {
+    currentProjectCode = code;
     const riskBox = document.getElementById("risk");
     riskBox.innerHTML = `<p>Analyzing <strong>${code}</strong>...</p>`;
 
@@ -323,6 +334,7 @@ function renderRiskChart(riskData) {
     const ctx = canvas.getContext("2d");
     if (riskChart) {
         riskChart.destroy();
+        riskChart = null;
     }
 
     const tierToScore = (tier) => {
@@ -336,13 +348,14 @@ function renderRiskChart(riskData) {
     const costScore = tierToScore(riskData.costRisk);
     const delayScore = tierToScore(riskData.delayRisk);
     const overallScore = tierToScore(riskData.overallRisk);
+    const codeLabel = riskData.projectCode || currentProjectCode || "Project";
 
     riskChart = new Chart(ctx, {
         type: "bar",
         data: {
             labels: ["Cost Risk", "Delay Risk", "Overall Risk"],
             datasets: [{
-                label: "Risk Index (0-100)",
+                label: `${codeLabel} Risk Index (0-100)`,
                 data: [costScore, delayScore, overallScore],
                 backgroundColor: [
                     costScore >= 70 ? "#ef4444" : costScore >= 40 ? "#f59e0b" : "#10b981",
@@ -354,6 +367,10 @@ function renderRiskChart(riskData) {
         },
         options: {
             responsive: true,
+            animation: {
+                duration: 600,
+                easing: "easeOutQuart"
+            },
             scales: {
                 y: {
                     beginAtZero: true,
@@ -365,7 +382,14 @@ function renderRiskChart(riskData) {
             },
             plugins: {
                 legend: {
-                    display: false
+                    display: true,
+                    position: "top",
+                    labels: {
+                        boxWidth: 16,
+                        font: {
+                            weight: "bold"
+                        }
+                    }
                 }
             }
         }
