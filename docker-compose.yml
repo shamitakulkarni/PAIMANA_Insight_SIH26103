@@ -1,5 +1,6 @@
-service:
+
  postgres:
+ service:
     image: postgres:17
     environment:
       POSTGRES_DB: paimana
