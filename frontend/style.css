@@ -668,3 +668,59 @@ textarea:focus {
     }
 
 }
+
+/* =====================================================
+   RISK BADGES & ENHANCEMENTS
+===================================================== */
+
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.badge-high {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+
+.badge-med,
+.badge-medium {
+    background-color: #fef3c7;
+    color: #b45309;
+    border: 1px solid #fcd34d;
+}
+
+.badge-low {
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+}
+
+.badge-none {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    border: 1px solid #e5e7eb;
+}
+
+button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.risk-evidence-list {
+    margin: 12px 0;
+    padding-left: 20px;
+}
+
+.risk-evidence-item {
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #4b5563;
+}

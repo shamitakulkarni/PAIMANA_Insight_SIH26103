@@ -1,0 +1,25 @@
+# Database and local data
+local_pgdata/
+*.log
+
+# Python virtual environment and cache
+ml-service/.venv/
+ml-service/__pycache__/
+__pycache__/
+*.pyc
+*.pyo
+
+# Java & Maven build outputs
+backend/target/
+*.jar
+*.class
+
+# IDE and OS files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
