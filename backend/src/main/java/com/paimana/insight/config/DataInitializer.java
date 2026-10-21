@@ -188,6 +188,42 @@ public class DataInitializer {
                 projects.save(p3);
             }
 
+            if (projects.findByProjectCode("PAI-004").isEmpty()) {
+                Project p4 = new Project();
+                p4.setProjectCode("PAI-004");
+                p4.setProjectName("Smart Grid Power Infrastructure");
+                p4.setMinistry("Power");
+                p4.setSector("Energy");
+                p4.setState("Gujarat");
+                p4.setDataSource("PROTOTYPE");
+                p4.setOriginalCost(new BigDecimal("150.00"));
+                p4.setRevisedCost(new BigDecimal("185.00"));
+                p4.setExpenditure(new BigDecimal("110.00"));
+                p4.setOriginalEndDate(LocalDate.of(2027, 6, 30));
+                p4.setRevisedEndDate(LocalDate.of(2028, 12, 31));
+                p4.setPhysicalProgress(45.0);
+                p4.setStatus(ProjectStatus.ONGOING);
+                projects.save(p4);
+            }
+
+            if (projects.findByProjectCode("PAI-005").isEmpty()) {
+                Project p5 = new Project();
+                p5.setProjectCode("PAI-005");
+                p5.setProjectName("Metro Rail Phase II");
+                p5.setMinistry("Urban Development");
+                p5.setSector("Transport");
+                p5.setState("Delhi");
+                p5.setDataSource("PROTOTYPE");
+                p5.setOriginalCost(new BigDecimal("320.00"));
+                p5.setRevisedCost(new BigDecimal("335.00"));
+                p5.setExpenditure(new BigDecimal("240.00"));
+                p5.setOriginalEndDate(LocalDate.of(2027, 9, 30));
+                p5.setRevisedEndDate(LocalDate.of(2028, 3, 31));
+                p5.setPhysicalProgress(68.0);
+                p5.setStatus(ProjectStatus.ONGOING);
+                projects.save(p5);
+            }
+
             System.out.println("=================================");
             System.out.println("PAIMANA INSIGHT DEMO DATA LOADED");
             System.out.println("=================================");

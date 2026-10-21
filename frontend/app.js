@@ -103,7 +103,7 @@ async function load() {
         const rows = document.getElementById("rows");
         rows.innerHTML = `
             <tr>
-                <td colspan="7" style="text-align: center; color: #6b7280; padding: 20px;">
+                <td colspan="9" style="text-align: center; color: #6b7280; padding: 20px;">
                     Loading and analyzing project risks...
                 </td>
             </tr>
@@ -153,7 +153,7 @@ async function load() {
         if (projects.length === 0) {
             rows.innerHTML = `
                 <tr>
-                    <td colspan="7" style="text-align: center; color: #6b7280; padding: 20px;">
+                    <td colspan="9" style="text-align: center; color: #6b7280; padding: 20px;">
                         No projects found.
                     </td>
                 </tr>
@@ -175,6 +175,8 @@ async function load() {
                 <td>${project.projectName}</td>
                 <td>${project.ministry || "-"}</td>
                 <td>${project.state || "-"}</td>
+                <td>${project.originalEndDate || "-"}</td>
+                <td>${project.revisedEndDate || "-"}</td>
                 <td>${project.physicalProgress != null ? project.physicalProgress + "%" : "-"}</td>
                 <td>
                     <span class="badge ${badgeClass}" id="badge-${project.projectCode}">
@@ -197,7 +199,7 @@ async function load() {
         document.getElementById("count").textContent = "Error";
         document.getElementById("rows").innerHTML = `
             <tr>
-                <td colspan="7" style="color: #d32f2f; text-align: center; padding: 20px;">
+                <td colspan="9" style="color: #d32f2f; text-align: center; padding: 20px;">
                     Error loading projects: ${error.message}
                 </td>
             </tr>
@@ -273,9 +275,18 @@ async function investigate(code) {
             `;
         }
 
+        const proj = projectsData.find(p => p.projectCode === code) || {};
+        const dateInfo = (proj.originalEndDate || proj.revisedEndDate) ? `
+            <div style="font-size: 13px; color: #4b5563; margin-bottom: 8px;">
+                <strong>Target Date:</strong> ${proj.originalEndDate || "-"} &nbsp;|&nbsp; 
+                <strong>Revised Date:</strong> ${proj.revisedEndDate || "-"}
+            </div>
+        ` : "";
+
         // Render card
         riskBox.innerHTML = `
             <h4>${code} - Risk Investigation</h4>
+            ${dateInfo}
             <div style="display: flex; gap: 15px; margin: 10px 0; flex-wrap: wrap;">
                 <div><strong>Overall Risk:</strong> <span class="badge ${getBadgeClass(data.overallRisk)}">${data.overallRisk || "-"}</span></div>
                 <div><strong>Cost Risk:</strong> <span class="badge ${getBadgeClass(data.costRisk)}">${data.costRisk || "-"}</span></div>
