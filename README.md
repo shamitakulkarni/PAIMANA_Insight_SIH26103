@@ -19,7 +19,9 @@ The system goes beyond basic project monitoring by combining:
 The main objective is to help project authorities identify potential **cost overruns and delays at an early stage** and understand the factors contributing to project risk.
 
 ---
+### 🎥 Video Demonstration
 
+https://drive.google.com/file/d/1u-UvgO3m1utTRmJfXKvBuTsX8U7-o2w7/view?usp=drivesdk
 ## Live Demo
 
 ### Frontend
